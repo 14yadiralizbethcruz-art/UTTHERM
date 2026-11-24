@@ -1,57 +1,186 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UTTHERM</title>
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#EBECED;
-            text-align:center;
-            padding:50px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTTHERM</title>
 
-        h1{
-            color:#3F91D9;
-        }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
 
-        .card{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            max-width:600px;
-            margin:auto;
-            box-shadow:0 3px 10px rgba(0,0,0,.1);
-        }
+body{
+background:#f4f6f9;
+}
 
-        button{
-            background:#2ECC71;
-            color:white;
-            border:none;
-            padding:12px 20px;
-            border-radius:8px;
-            cursor:pointer;
-        }
-    </style>
+nav{
+background:#0d6efd;
+color:white;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav ul{
+display:flex;
+gap:15px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+cursor:pointer;
+}
+
+section{
+display:none;
+padding:40px;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+max-width:800px;
+margin:auto;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+button{
+background:#dc3545;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.temp{
+font-size:60px;
+font-weight:bold;
+color:#dc3545;
+text-align:center;
+margin:20px 0;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+</style>
+
 </head>
 <body>
 
+<nav>
+<h2>UTTHERM</h2>
+
+<ul>
+<li><a onclick="mostrar('inicio')">Inicio</a></li>
+<li><a onclick="mostrar('login')">Login</a></li>
+<li><a onclick="mostrar('registro')">Registro</a></li>
+<li><a onclick="mostrar('perfil')">Perfil</a></li>
+<li><a onclick="mostrar('dashboard')">Dashboard</a></li>
+</ul>
+</nav>
+
+<section id="inicio" class="active">
 <div class="card">
-    <h1>UTTHERM</h1>
-    <p>Sistema Inteligente de Monitoreo de Temperatura</p>
+<h1>Bienvenido a UTTHERM</h1>
+<p>Sistema inteligente de monitoreo de temperatura.</p>
+</div>
+</section>
 
-    <button onclick="mostrarTemperatura()">
-        Ver Temperatura
-    </button>
+<section id="login">
+<div class="card">
+<h2>Iniciar Sesión</h2>
+<input type="email" placeholder="Correo">
+<input type="password" placeholder="Contraseña">
+<button>Entrar</button>
+</div>
+</section>
 
-    <h2 id="temp">-- °C</h2>
+<section id="registro">
+<div class="card">
+<h2>Registro</h2>
+<input type="text" placeholder="Nombre">
+<input type="email" placeholder="Correo">
+<input type="password" placeholder="Contraseña">
+<button>Registrarme</button>
+</div>
+</section>
+
+<section id="perfil">
+<div class="card">
+<h2>Perfil de Usuario</h2>
+<p><strong>Nombre:</strong> Usuario UTTHERM</p>
+<p><strong>Correo:</strong> usuario@uttherm.com</p>
+<p><strong>Dispositivo:</strong> Termo Inteligente</p>
+</div>
+</section>
+
+<section id="dashboard">
+<div class="dashboard-grid">
+
+<div class="card">
+<h3>Temperatura Actual</h3>
+<div class="temp" id="temp">45°C</div>
 </div>
 
+<div class="card">
+<h3>Estado</h3>
+<p>Sistema Activo</p>
+</div>
+
+<div class="card">
+<h3>Dispositivo</h3>
+<p>UTTHERM-001</p>
+</div>
+
+</div>
+</section>
+
 <script>
-function mostrarTemperatura(){
-    document.getElementById("temp").innerHTML="45°C";
+
+function mostrar(id){
+
+document.querySelectorAll("section")
+.forEach(sec=>sec.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
 }
+
+function actualizarTemperatura(){
+
+let temp=Math.floor(Math.random()*15)+35;
+
+document.getElementById("temp")
+.innerHTML=temp+"°C";
+
+}
+
+setInterval(actualizarTemperatura,3000);
+
 </script>
 
 </body>
