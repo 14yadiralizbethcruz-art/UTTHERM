@@ -1,2 +1,58 @@
-Bienvenido a UTTHERM
-Sistema de monitoreo de temperatura.
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTTHERM</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#EBECED;
+            text-align:center;
+            padding:50px;
+        }
+
+        h1{
+            color:#3F91D9;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            max-width:600px;
+            margin:auto;
+            box-shadow:0 3px 10px rgba(0,0,0,.1);
+        }
+
+        button{
+            background:#2ECC71;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>UTTHERM</h1>
+    <p>Sistema Inteligente de Monitoreo de Temperatura</p>
+
+    <button onclick="mostrarTemperatura()">
+        Ver Temperatura
+    </button>
+
+    <h2 id="temp">-- °C</h2>
+</div>
+
+<script>
+function mostrarTemperatura(){
+    document.getElementById("temp").innerHTML="45°C";
+}
+</script>
+
+</body>
+</html>
